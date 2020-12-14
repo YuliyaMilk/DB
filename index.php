@@ -15,10 +15,10 @@
         if (isset($_POST['ok'])) {
             if (isset($_SESSION['log']) == "") {
                 echo '
-                <p>
+                <script>
                   alert("Sign in First");
                   window.location.href = "login.php";
-                </p>
+                </script>
                 ';
             } else {
                 $id = $_SESSION['log']['Id'];
@@ -38,9 +38,9 @@
                     } else {
                         // echo "Error: " . mysqli_error($con);
                         echo '
-                        <p>
+                        <script>
                         alert("Appointment set Unsucessful RETRY!");
-                        </p>
+                        </script>
                         ';
                     }
                 } else if ($type == 'doctor') {

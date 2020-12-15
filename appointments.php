@@ -27,6 +27,7 @@ include('src/config.php');
 
     $id = $_SESSION['log']['Id'];
     if ($_SESSION['log1'] == "client") {
+        $status = "Rejected";
         ?>
         <section id="service">
             <div class="container">
@@ -46,7 +47,7 @@ include('src/config.php');
                                                 <tr>
                                                     <th>Анализ</th>
                                                     <th>Дата</th>
-                                                    <th>Время</th>
+                                                    <th></th>
                                                     <th>Удалить</th>
                                                 </tr>
                                             </thead>
@@ -61,7 +62,7 @@ include('src/config.php');
                                                     <tr>
                                                         <th scope="row"><?= $row2['test_name'] ?></th>
                                                         <td><?= $row['Test_date'] ?></td>
-                                                        <td><?= $row['Test_time'] ?></td>
+                                                        <td></td>
                                                         <td><a href="deleteapp.php?data=test&action=delete&id=<?= $row['Id']; ?>">Удалить запись</a></td>
                                                     </tr>
                                                 <?php
@@ -102,7 +103,7 @@ include('src/config.php');
                                             </thead>
                                             <tbody>
                                                 <?php
-                                                    $sql = mysqli_query($con, "SELECT * FROM doctor_app WHERE Users_id='$id' ");
+                                                    $sql = mysqli_query($con, "SELECT * FROM doctor_app WHERE Users_id='$id' and Status!='$status' ");
                                                     while ($row = mysqli_fetch_array($sql)) {
                                                         $doc = $row['Doctor_id'];
                                                         $sql2 = mysqli_query($con, "SELECT * FROM doctor WHERE id='$doc' ");
@@ -113,23 +114,10 @@ include('src/config.php');
                                                         <th scope="row"><?= $row2['Name'] ?></th>
                                                         <td><?= $row['App_date'] ?></td>
                                                         <td><?= $row['App_time'] ?></td>
-                                                        <?php
-                                                                if ($sts == "Rejected") {
-                                                                    ?>
-                                                            <td>Врач отменил</td>
-                                                            <td>
-                                                                <a href="deleteapp.php?data=doctor&action=delete&id=<?= $row['Id']; ?>">Отменить запись</a>
-                                                            </td>
-                                                        <?php
-                                                                } else {
-                                                                    ?>
-                                                            <td></td>
-                                                            <td>
-                                                                <a href="deleteapp.php?data=doctor&action=delete&id=<?= $row['Id']; ?>">Отменить запись</a>
-                                                            </td>
-                                                        <?php
-                                                                }
-                                                                ?>
+                                                        <td></td>
+                                                        <td><a href="deleteapp.php?data=doctor&action=reject&id=<?= $row['Id']; ?>">Отменить</a></td>
+                                                    
+                                                        
                                                     </tr>
                                                 <?php
                                                     }
@@ -147,7 +135,7 @@ include('src/config.php');
     <?php
     } else if ($_SESSION['log1'] == "doctor") {
         $id = $_SESSION['log']['Id'];
-        $status = "Rejected";
+        
         ?>
         <section id="service">
             <div class="container">
@@ -167,12 +155,13 @@ include('src/config.php');
                                                     <th>Пациент</th>
                                                     <th>Дата</th>
                                                     <th>Время</th>
+                                                    <th></th>
                                                     <th>Услуга</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <?php
-                                                    $sql = mysqli_query($con, "SELECT * FROM doctor_app WHERE Doctor_id='$id' and Status!='$status' ");
+                                                    $sql = mysqli_query($con, "SELECT * FROM doctor_app WHERE Doctor_id='$id'");
                                                     while ($row = mysqli_fetch_array($sql)) {
                                                         $sts = $row['Status'];
                                                         $user = $row['Users_id'];
@@ -183,7 +172,22 @@ include('src/config.php');
                                                         <th scope="row"><?= $row2['Name'] ?></th>
                                                         <td><?= $row['App_date'] ?></td>
                                                         <td><?= $row['App_time'] ?></td>
-                                                        <td><a href="deleteapp.php?data=doctor&action=reject&id=<?= $row['Id']; ?>">Отменить</a></td>
+                                                        
+                                                        <?php
+                                                                if ($sts == "Rejected") {
+                                                                    ?>
+                                                            <td>Клиент отменил</td>
+                                                            <td>
+                                                                <a href="deleteapp.php?data=doctor&action=delete&id=<?= $row['Id']; ?>">Удалить запись</a>
+                                                            </td>
+                                                        <?php
+                                                                } else {
+                                                                    ?>
+                                                            <td></td>
+                                                            <td></td>
+                                                        <?php
+                                                                }
+                                                                ?>
                                                     </tr>
                                                 <?php
                                                     }

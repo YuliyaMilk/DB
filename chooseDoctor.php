@@ -79,9 +79,7 @@ include('src/config.php');
                         ?>
                     </tbody>
                 </table>
-            <div class="readmore_area">
-            <a data-hover="Запись" href="index.php"><span>Запись</span></a>
-            </div>
+            
         </div>
         </div>
         </div>

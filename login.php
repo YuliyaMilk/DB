@@ -3,7 +3,7 @@ include('src/config.php');
 include('src/youAreHere.php');
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
     <title>Doctor Finder : Вход</title>
@@ -20,7 +20,12 @@ include('src/youAreHere.php');
         $email = $_POST['mail'];
         $pwd = $_POST['pwd'];
         $hash=sha1($pwd);
-        $qry1 = mysqli_query($con, "SELECT * FROM client WHERE Email='$email' and (Password='$pwd' or Password ='$hash')") or die(mysqli_error($con));
+        echo '
+                <script>
+                    console.log('.$hash.');
+                </script>
+            ';
+        $qry1 = mysqli_query($con, "SELECT * FROM client WHERE Email='$email' and (Password='$pwd' or Password='$hash')") or die(mysqli_error($con));
         $qry2 = mysqli_num_rows($qry1);
         if ($qry2) {
             $row = mysqli_fetch_array($qry1);

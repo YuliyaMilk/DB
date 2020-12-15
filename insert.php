@@ -129,12 +129,12 @@ include('src/youAreHere.php');
                                                 <div class="col-lg-4 col-md-4 col-sm-6">
                                                     <label class="control-label">Имя <span class="required">*</span>
                                                     </label>
-                                                    <input type="text" class="wp-form-control wpcf7-text" placeholder="Имя" name="fname" required pattern="[A-Za-z-0-9]+" value="<?php if(isset($_POST['$fname'])){echo $_POST['$fname']; }?>">
+                                                    <input type="text" class="wp-form-control wpcf7-text" placeholder="Имя" name="fname" required pattern="[A-Za-z-0-9-А-Яа-я]+" value="<?php if(isset($_POST['$fname'])){echo $_POST['$fname']; }?>">
                                                 </div>
                                                 <div class="col-lg-4 col-md-4 col-sm-6">
                                                     <label class="control-label">Фамилия <span class="required">*</span>
                                                     </label>
-                                                    <input type="text" class="wp-form-control wpcf7-text" placeholder="Фамилия" name="lname" required pattern="[A-Za-z-0-9]+" value="<?php if(isset($_POST['$lname'])){echo $_POST['$lname']; }?>">
+                                                    <input type="text" class="wp-form-control wpcf7-text" placeholder="Фамилия" name="lname" required pattern="[A-Za-z-0-9-А-Яа-я]+" value="<?php if(isset($_POST['$lname'])){echo $_POST['$lname']; }?>">
                                                 </div>
                                                 <div class="col-lg-2 col-md-2"></div>
                                             </div>

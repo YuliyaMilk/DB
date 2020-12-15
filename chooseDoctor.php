@@ -38,7 +38,7 @@ include('src/config.php');
                             
                     <tbody>
                         <?php
-                            $sql = mysqli_query($con, "SELECT DISTINCT Category FROM Doctor");
+                            $sql = mysqli_query($con, "SELECT DISTINCT Category FROM Doctor") or die(mysqli_error($con));
                             while ($row = mysqli_fetch_array($sql)) {
                         ?>
                         <thead>
@@ -52,7 +52,7 @@ include('src/config.php');
                             
                         <?php
                             $category = $row['Category'];
-                            $sql1 = mysqli_query($con, "SELECT * FROM Doctor WHERE Category = '$category' ");
+                            $sql1 = mysqli_query($con, "SELECT * FROM Doctor WHERE Category = '$category' ") or die(mysqli_error($con));
                             
                             
                             while ($row1 = mysqli_fetch_array($sql1)) {

@@ -43,7 +43,7 @@ include('src/youAreHere.php');
                 $doc = $id;
                 $appdate = $_POST['appdate'];
                 $apptime = date('H:i:s', strtotime($_POST['apptime']));
-                $qry = mysqli_query($con, "INSERT INTO doctor_app (Doctor_id,App_date,App_time,Users_id,User_name,Report,Status) VALUES ('$doc','$appdate','$apptime','$user_id','$name','','Accepted')");
+                $qry = mysqli_query($con, "INSERT INTO doctor_app (Doctor_id,App_date,App_time,Users_id,User_name,Report,Status) VALUES ('$doc','$appdate','$apptime','$user_id','$name','','Accepted')") or die(mysqli_error($con));
                 if ($qry) {
                     echo '
                     <script>
@@ -62,7 +62,7 @@ include('src/youAreHere.php');
                   }
              }
             }
-        $sql = mysqli_query($con, "SELECT * FROM Doctor WHERE Id = '$id' ");
+        $sql = mysqli_query($con, "SELECT * FROM Doctor WHERE Id = '$id' ") or die(mysqli_error($con));
         $row = mysqli_fetch_array($sql)
      ?>
 

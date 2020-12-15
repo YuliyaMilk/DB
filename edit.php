@@ -32,7 +32,7 @@ include('src/youAreHere.php');
         if ($data == 'test') {
             $testname = $_POST['testname'];
             $testfee = $_POST['testfee'];
-            $res1 = mysqli_query($con, "UPDATE test SET test_name = '$testname',test_cost = '$testfee' WHERE id = '$id' ");
+            $res1 = mysqli_query($con, "UPDATE test SET test_name = '$testname',test_cost = '$testfee' WHERE id = '$id' ") or die(mysqli_error($con));
             if ($res1 == 1) {
                 echo '
             <script>
@@ -50,7 +50,7 @@ include('src/youAreHere.php');
         } else if ($data == 'doctor') {
             $testname = $_POST['name'];
             $testfee = $_POST['fee'];
-            $res1 = mysqli_query($con, "UPDATE doctor SET Name = '$testname', Fees = '$testfee' WHERE id = '$id' ");
+            $res1 = mysqli_query($con, "UPDATE doctor SET Name = '$testname', Fees = '$testfee' WHERE id = '$id' ") or die(mysqli_error($con));
             if ($res1 == 1) {
                 echo '
             <script>

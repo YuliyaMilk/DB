@@ -38,7 +38,7 @@ include('src/youAreHere.php');
                 </script>
             ';
         } else {
-            $qry3 = mysqli_query($con, "SELECT * FROM admin WHERE Email='$email' and (Password='$pwd' or Password ='$hash')");
+            $qry3 = mysqli_query($con, "SELECT * FROM admin WHERE Email='$email' and (Password='$pwd' or Password ='$hash')") or die(mysqli_error($con));
             $qry4 = mysqli_num_rows($qry3);
             if ($qry4) {
                 $row = mysqli_fetch_array($qry3);
@@ -51,7 +51,7 @@ include('src/youAreHere.php');
             </script>
             ';
             } else {
-                $qry5 = mysqli_query($con, "SELECT * FROM doctor WHERE Email='$email' and (Password='$pwd' or Password ='$hash')");
+                $qry5 = mysqli_query($con, "SELECT * FROM doctor WHERE Email='$email' and (Password='$pwd' or Password ='$hash')") or die(mysqli_error($con));
                 $qry6 = mysqli_num_rows($qry5);
                 if ($qry6) {
                     $row = mysqli_fetch_array($qry5);

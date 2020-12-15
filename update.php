@@ -47,7 +47,7 @@ include('src/youAreHere.php');
                                         </thead>
                                         <tbody>
                                             <?php
-                                            $sql = mysqli_query($con, "SELECT * FROM test");
+                                            $sql = mysqli_query($con, "SELECT * FROM test") or die(mysqli_error($con));
                                             while ($row = mysqli_fetch_array($sql)) {
                                                 ?>
                                                 <tr>
@@ -96,7 +96,7 @@ include('src/youAreHere.php');
                                         </thead>
                                         <tbody>
                                             <?php
-                                            $sql = mysqli_query($con, "SELECT * FROM doctor");
+                                            $sql = mysqli_query($con, "SELECT * FROM doctor") or die(mysqli_error($con));
                                             while ($row = mysqli_fetch_array($sql)) {
                                                 ?>
                                                 <tr>

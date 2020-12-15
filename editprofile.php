@@ -28,23 +28,23 @@ include('src/youAreHere.php');
         $email = $_POST['mail'];
         $phno = $_POST['phno'];
         if ($_SESSION['log1'] == "client") {
-            $name = $_POST['nam'];
+            $name = $_POST['name'];
             $addr = $_POST['addr'];
-            $res = mysqli_query($con, "UPDATE client SET Name = '$name',Email = '$email',Address = '$addr',Phone = '$phno' WHERE Id = '$id' ");
-            $qry1 = mysqli_query($con, "SELECT * FROM client WHERE Email='$email'");
+            $res = mysqli_query($con, "UPDATE client SET Name = '$name',Email = '$email',Address = '$addr',Phone = '$phno' WHERE Id = '$id' ") or die(mysqli_error($con)) ;
+            $qry1 = mysqli_query($con, "SELECT * FROM client WHERE Email='$email'") ;
             $qry2 = mysqli_num_rows($qry1);
             $row = mysqli_fetch_array($qry1);
             $_SESSION['log'] = $row;
         } else if ($_SESSION['log1'] == "admin") {
-            $res = mysqli_query($con, "UPDATE admin SET Email = '$email',Phone = '$phno' WHERE Id = '$id' ");
-            $qry3 = mysqli_query($con, "SELECT * FROM admin WHERE Email='$email'");
+            $res = mysqli_query($con, "UPDATE admin SET Email = '$email',Phone = '$phno' WHERE Id = '$id' ") or die(mysqli_error($con));
+            $qry3 = mysqli_query($con, "SELECT * FROM admin WHERE Email='$email'") or die(mysqli_error($con));
             $qry4 = mysqli_num_rows($qry3);
             $row = mysqli_fetch_array($qry3);
             $_SESSION['log'] = $row;
         } else if ($_SESSION['log1'] == "doctor") {
             $addr = $_POST['addr'];
-            $res = mysqli_query($con, "UPDATE doctor SET Address = '$addr',Email = '$email',Phone = '$phno' WHERE Id = '$id' ");
-            $qry5 = mysqli_query($con, "SELECT * FROM doctor WHERE Email='$email'");
+            $res = mysqli_query($con, "UPDATE doctor SET Address = '$addr',Email = '$email',Phone = '$phno' WHERE Id = '$id' ") or die(mysqli_error($con));
+            $qry5 = mysqli_query($con, "SELECT * FROM doctor WHERE Email='$email'") or die(mysqli_error($con));
             $qry6 = mysqli_num_rows($qry5);
             $row = mysqli_fetch_array($qry5);
             $_SESSION['log'] = $row;
@@ -70,13 +70,13 @@ include('src/youAreHere.php');
         if ($pwd == $repwd) {
             if ($_SESSION['log1'] == "client") {
                 $hash=sha1($pwd);
-                $res = mysqli_query($con, "UPDATE client SET Password='$hash' WHERE Id='$id' ");
+                $res = mysqli_query($con, "UPDATE client SET Password='$hash' WHERE Id='$id' ") or die(mysqli_error($con));
             } else if ($_SESSION['log1'] == "admin") {
                 $hash=sha1($pwd);
-                $res = mysqli_query($con, "UPDATE admin SET Password='$hash' WHERE Id='$id' ");
+                $res = mysqli_query($con, "UPDATE admin SET Password='$hash' WHERE Id='$id' ") or die(mysqli_error($con));
             } else if ($_SESSION['log1'] == "doctor") {
                 $hash=sha1($pwd);
-                $res = mysqli_query($con, "UPDATE doctor SET Password='$hash' WHERE Id='$id' ");
+                $res = mysqli_query($con, "UPDATE doctor SET Password='$hash' WHERE Id='$id' ") or die(mysqli_error($con));
             }
             if ($res == 1) {
                 echo '
@@ -120,7 +120,7 @@ include('src/youAreHere.php');
                                                 <div class="col-lg-2 col-md-2"></div>
                                                 <div class="col-lg-8 col-md-8 col-sm-6">
                                                     <label class="control-label">Имя <span class="required">*</span></label>
-                                                    <input type="text" class="wp-form-control wpcf7-text" value="<?php echo $_SESSION['log']['Name'] ?>" name="name" required>
+                                                    <input type="text" class="wp-form-control wpcf7-text" value="<?php echo $_SESSION['log']['Name'] ?>" name="name" required >
                                                 </div>
                                                 <div class="col-lg-2 col-md-2"></div>
                                             </div>

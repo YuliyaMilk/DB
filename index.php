@@ -28,7 +28,7 @@
                     $test = $_POST['test'];
                     $appdate = $_POST['appdate1'];
                     // $apptime = date('H:i:s', strtotime($_POST['apptime1']));
-                    $qry = mysqli_query($con, "INSERT INTO test_appointment (Test_id,Test_date,Users_id) VALUES ('$test','$appdate','$id')");
+                    $qry = mysqli_query($con, "INSERT INTO test_appointment (Test_id,Test_date,Users_id) VALUES ('$test','$appdate','$id')") or die(mysqli_error($con));
                     if ($qry) {
                         echo '
                         <script>

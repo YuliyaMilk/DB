@@ -76,7 +76,7 @@ include('src/youAreHere.php');
                                             <div class="col-lg-4 col-md-4 col-sm-6">
                                                 <label class="control-label">Фамилия <span class="required">*</span>
                                                 </label>
-                                                <input type="text" class="wp-form-control wpcf7-text" placeholder="Фамилия" name="lname" value="<?= $lname ?>" required pattern="[A-Za-z-0-9А-Яа-я]+">
+                                                <input type="text" class="wp-form-control wpcf7-text" placeholder="Фамилия" name="lname" value="<?= $lname ?>" required pattern="[A-Za-z-0-9-А-Яа-я]+">
                                             </div>
                                             <div class="col-lg-2 col-md-2"></div>
                                         </div>

@@ -49,10 +49,10 @@ include('src/youAreHere.php');
                                         </thead>
                                         <tbody>
                                             <?php
-                                            $sql = mysqli_query($con, "SELECT * FROM test_appointment ");
+                                            $sql = mysqli_query($con, "SELECT * FROM test_appointment ") or die(mysqli_error($con)); 
                                             while ($row = mysqli_fetch_array($sql)) {
                                                 $test = $row['Test_id'];
-                                                $sql2 = mysqli_query($con, "SELECT * FROM test WHERE id='$test' ");
+                                                $sql2 = mysqli_query($con, "SELECT * FROM test WHERE id='$test' ") or die(mysqli_error($con)); 
                                                 $row2 = mysqli_fetch_array($sql2);
                                                 ?>
                                                 <tr>
@@ -99,13 +99,13 @@ include('src/youAreHere.php');
                                         </thead>
                                         <tbody>
                                             <?php
-                                            $sql = mysqli_query($con, "SELECT * FROM doctor_app");
+                                            $sql = mysqli_query($con, "SELECT * FROM doctor_app") or die(mysqli_error($con));
                                             while ($row = mysqli_fetch_array($sql)) {
                                                 $doc = $row['Doctor_id'];
-                                                $sql2 = mysqli_query($con, "SELECT * FROM doctor WHERE id='$doc' ");
+                                                $sql2 = mysqli_query($con, "SELECT * FROM doctor WHERE id='$doc' ") or die(mysqli_error($con));
                                                 $row2 = mysqli_fetch_array($sql2);
                                                 $user = $row['Users_id'];
-                                                $sql3 = mysqli_query($con, "SELECT * FROM client WHERE Id='$user' ");
+                                                $sql3 = mysqli_query($con, "SELECT * FROM client WHERE Id='$user' ") or die(mysqli_error($con));
                                                 $row3 = mysqli_fetch_array($sql3);
                                                 ?>
                                                 <tr>

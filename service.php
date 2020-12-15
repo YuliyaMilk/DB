@@ -35,7 +35,7 @@ include('src/config.php');
                                         </thead>
                                         <tbody>
                                             <?php
-                                            $sql = mysqli_query($con, "SELECT * FROM test");
+                                            $sql = mysqli_query($con, "SELECT * FROM test") or die(mysqli_error($con));
                                             while ($row = mysqli_fetch_array($sql)) {
                                                 ?>
                                                 <tr>

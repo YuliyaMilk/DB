@@ -53,10 +53,10 @@ include('src/config.php');
                                             </thead>
                                             <tbody>
                                                 <?php
-                                                    $sql = mysqli_query($con, "SELECT * FROM test_appointment WHERE Users_id='$id' ");
+                                                    $sql = mysqli_query($con, "SELECT * FROM test_appointment WHERE Users_id='$id' ") or die(mysqli_error($con));
                                                     while ($row = mysqli_fetch_array($sql)) {
                                                         $test = $row['Test_id'];
-                                                        $sql2 = mysqli_query($con, "SELECT * FROM test WHERE id='$test' ");
+                                                        $sql2 = mysqli_query($con, "SELECT * FROM test WHERE id='$test' ") or die(mysqli_error($con));
                                                         $row2 = mysqli_fetch_array($sql2);
                                                         ?>
                                                     <tr>
@@ -103,10 +103,10 @@ include('src/config.php');
                                             </thead>
                                             <tbody>
                                                 <?php
-                                                    $sql = mysqli_query($con, "SELECT * FROM doctor_app WHERE Users_id='$id' and Status!='$status' ");
+                                                    $sql = mysqli_query($con, "SELECT * FROM doctor_app WHERE Users_id='$id' and Status!='$status' ") or die(mysqli_error($con));
                                                     while ($row = mysqli_fetch_array($sql)) {
                                                         $doc = $row['Doctor_id'];
-                                                        $sql2 = mysqli_query($con, "SELECT * FROM doctor WHERE id='$doc' ");
+                                                        $sql2 = mysqli_query($con, "SELECT * FROM doctor WHERE id='$doc' ") or die(mysqli_error($con));
                                                         $row2 = mysqli_fetch_array($sql2);
                                                         $sts = $row['Status'];
                                                         ?>
@@ -161,11 +161,11 @@ include('src/config.php');
                                             </thead>
                                             <tbody>
                                                 <?php
-                                                    $sql = mysqli_query($con, "SELECT * FROM doctor_app WHERE Doctor_id='$id'");
+                                                    $sql = mysqli_query($con, "SELECT * FROM doctor_app WHERE Doctor_id='$id'") or die(mysqli_error($con));
                                                     while ($row = mysqli_fetch_array($sql)) {
                                                         $sts = $row['Status'];
                                                         $user = $row['Users_id'];
-                                                        $sql2 = mysqli_query($con, "SELECT * FROM client WHERE Id='$user' ");
+                                                        $sql2 = mysqli_query($con, "SELECT * FROM client WHERE Id='$user' ") or die(mysqli_error($con));
                                                         $row2 = mysqli_fetch_array($sql2);
                                                         ?>
                                                     <tr>

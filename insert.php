@@ -14,6 +14,7 @@ include('src/youAreHere.php');
 
     <?php include('src/header.php') ?>
     <?php
+    $hash='';
     echo youAreHere("Добавление");
     if (!isset($_SESSION['log']) || $_SESSION['log'] == '') {
         echo '
@@ -30,7 +31,7 @@ include('src/youAreHere.php');
         if ($data == 'test') {
             $testname = $_POST['testname'];
             $testfee = $_POST['testfee'];
-            $res = mysqli_query($con, "INSERT INTO test (test_name,test_cost) VALUES ('$testname','$testfee')");
+            $res = mysqli_query($con, "INSERT INTO test (test_name,test_cost) VALUES ('$testname','$testfee')") or die(mysqli_error($con));
         } else if ($data == "doctor") {
             $name = $_POST['fname'] . " " . $_POST['lname'];
             $email = $_POST['mail'];
@@ -41,7 +42,8 @@ include('src/youAreHere.php');
             $pwd = $_POST['pwd'];
             $fee = $_POST['fee'];
             $cat = $_POST['category'];
-            $res = mysqli_query($con, "INSERT INTO doctor (Name, Email, Dob, Gender, Address, Phone, Password, Fees, Category) VALUES ('$name','$email','$dob','$gnd','$addr','$phno','$pwd','$fee','$cat')");
+            $hash=sha1($pwd);
+            $res = mysqli_query($con, "INSERT INTO doctor (Name, Email, Dob, Gender, Address, Phone, Password, Fees, Category) VALUES ('$name','$email','$dob','$gnd','$addr','$phno','$hash','$fee','$cat')") or die(mysqli_error($con));
         }
         if ($res == 1) {
             echo '
@@ -52,7 +54,7 @@ include('src/youAreHere.php');
         } else {
             echo '
                 <script>
-                alert("Что-то пошло не так");
+                alert("База данных не найдена");
                 </script>
                 ';
         }

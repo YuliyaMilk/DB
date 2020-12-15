@@ -15,24 +15,25 @@ include('src/youAreHere.php');
     <?php include('src/header.php') ?>
 
     <?php
-    $email = $pwd = '';
+    $email = $pwd = $hash = '';
     if (isset($_POST['ok'])) {
         $email = $_POST['mail'];
         $pwd = $_POST['pwd'];
-        $qry1 = mysqli_query($con, "SELECT * FROM client WHERE Email='$email' and Password='$pwd'") or die(mysqli_error($con));
+        $hash=sha1($pwd);
+        $qry1 = mysqli_query($con, "SELECT * FROM client WHERE Email='$email' and (Password='$pwd' or Password ='$hash')") or die(mysqli_error($con));
         $qry2 = mysqli_num_rows($qry1);
         if ($qry2) {
             $row = mysqli_fetch_array($qry1);
             $_SESSION['log'] = $row;
             $_SESSION['log1'] = "client";
             echo '
-        <script>
-          alert("Добро пожаловать!");
-          window.location.href = "index.php";
-        </script>
-        ';
+                <script>
+                alert("Добро пожаловать!");
+                window.location.href = "index.php";
+                </script>
+            ';
         } else {
-            $qry3 = mysqli_query($con, "SELECT * FROM admin WHERE Email='$email' and Password='$pwd'");
+            $qry3 = mysqli_query($con, "SELECT * FROM admin WHERE Email='$email' and (Password='$pwd' or Password ='$hash')");
             $qry4 = mysqli_num_rows($qry3);
             if ($qry4) {
                 $row = mysqli_fetch_array($qry3);
@@ -45,7 +46,7 @@ include('src/youAreHere.php');
             </script>
             ';
             } else {
-                $qry5 = mysqli_query($con, "SELECT * FROM doctor WHERE Email='$email' and Password='$pwd'");
+                $qry5 = mysqli_query($con, "SELECT * FROM doctor WHERE Email='$email' and (Password='$pwd' or Password ='$hash')");
                 $qry6 = mysqli_num_rows($qry5);
                 if ($qry6) {
                     $row = mysqli_fetch_array($qry5);

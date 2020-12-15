@@ -14,6 +14,7 @@ include('src/youAreHere.php');
     <?php include('src/header.php') ?>
 
     <?php
+    $hash='';
     if (!isset($_SESSION['log']) || $_SESSION['log'] == '') {
         echo '
         <script>
@@ -63,15 +64,19 @@ include('src/youAreHere.php');
         }
     }
     if (isset($_POST['okpass'])) {
+        $id = $_SESSION['log']['Id'];
         $pwd = $_POST['pwd'];
         $repwd = $_POST['repwd'];
         if ($pwd == $repwd) {
             if ($_SESSION['log1'] == "client") {
-                $res = mysqli_query($con, "UPDATE client SET Password='$pwd' WHERE Id='$id' ");
+                $hash=sha1($pwd);
+                $res = mysqli_query($con, "UPDATE client SET Password='$hash' WHERE Id='$id' ");
             } else if ($_SESSION['log1'] == "admin") {
-                $res = mysqli_query($con, "UPDATE admin SET Password='$pwd' WHERE Id='$id' ");
+                $hash=sha1($pwd);
+                $res = mysqli_query($con, "UPDATE admin SET Password='$hash' WHERE Id='$id' ");
             } else if ($_SESSION['log1'] == "doctor") {
-                $res = mysqli_query($con, "UPDATE doctor SET Password='$pwd' WHERE Id='$id' ");
+                $hash=sha1($pwd);
+                $res = mysqli_query($con, "UPDATE doctor SET Password='$hash' WHERE Id='$id' ");
             }
             if ($res == 1) {
                 echo '

@@ -14,7 +14,7 @@ include('src/youAreHere.php');
     <?php include('src/header.php') ?>
     
     <?php
-    $fname = $lname = $email = $dob = $gnd = $addr = $phno = $pwd = $repwd = ''; //Имя, Фамилия, почта, Дата рождения, пол, адрес, телефон, пароль, повторение пароля
+    $fname = $lname = $email = $dob = $gnd = $addr = $phno = $pwd = $repwd = $hash=''; //Имя, Фамилия, почта, Дата рождения, пол, адрес, телефон, пароль, повторение пароля
     if (isset($_POST['ok'])) {
         $fname = $_POST['fname'];
         $lname = $_POST['lname'];
@@ -30,7 +30,8 @@ include('src/youAreHere.php');
             $qry1 = mysqli_query($con, "SELECT * FROM client WHERE Email = '$email'") or die(mysqli_error($con));
             $qry2 = mysqli_num_rows($qry1);
             if ($qry2 == 0) {
-                $qry3 = mysqli_query($con, "INSERT INTO client (Name, Email, Dob, Gender, Address, Phone, Password) VALUES ('$name', '$email', '$dob', '$gnd', '$addr', '$phno','$pwd')") or die(mysqli_error($con));
+                $hash=sha1($pwd);
+                $qry3 = mysqli_query($con, "INSERT INTO client (Name, Email, Dob, Gender, Address, Phone, Password) VALUES ('$name', '$email', '$dob', '$gnd', '$addr', '$phno','$hash')") or die(mysqli_error($con));
                 echo '
                 <script>
                 alert("Вы успешно зарегистрированы!");

@@ -6,13 +6,15 @@ include('src/youAreHere.php');
 <html lang="en">
 
 <head>
-    <title>Doctor Finder : Изменить</title>
+    <title>Doctor Finder : Результаты</title>
     <?php include('src/head.php') ?>
 </head>
 
 <body>
 
-    <?php include('src/header.php'); 
+    <?php include('src/header.php') ?>
+
+    <?php
     if (!isset($_SESSION['log']) || $_SESSION['log'] == '') {
         echo '
         <script>
@@ -21,7 +23,7 @@ include('src/youAreHere.php');
         </script>
         ';
     }
-    echo youAreHere("Изменить");
+    echo youAreHere("Результаты");
     ?>
 
     <section id="service">
@@ -40,30 +42,30 @@ include('src/youAreHere.php');
                                         <thead>
                                             <tr>
                                                 <th>Анализ</th>
-                                                <th>Стоимость</th>
-                                                <th>Изменить</th>
-                                                <th>Удалить</th>
+                                                <th>Дата</th>
+                                                <th>Время</th>
+                                                <th>Upload</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php
-                                            $sql = mysqli_query($con, "SELECT * FROM test");
+                                            $sql = mysqli_query($con, "SELECT * FROM test_appointment ");
                                             while ($row = mysqli_fetch_array($sql)) {
+                                                $test = $row['Test_id'];
+                                                $sql2 = mysqli_query($con, "SELECT * FROM test WHERE id='$test' ");
+                                                $row2 = mysqli_fetch_array($sql2);
                                                 ?>
                                                 <tr>
-                                                    <th scope="row"><?= $row['test_name'] ?></th>
-                                                    <td><?= $row['test_cost'] ?></td>
-                                                    <td><a href="edit.php?data=test&id=<?= $row['id']; ?>">Изменить</a></td>
-                                                    <td><a href="delete.php?data=test&id=<?= $row['id']; ?>">Удалить</a></td>
+                                                    <th scope="row"><?= $row2['test_name'] ?></th>
+                                                    <td><?= $row['Test_date'] ?></td>
+                                                    <td><?= $row['Test_time'] ?></td>
+                                                    <td><a href="uploadcode.php?data=test&id=<?= $row['Id'] ?>">Загрузить</a></td>
                                                 </tr>
                                             <?php
                                             }
                                             ?>
                                         </tbody>
                                     </table>
-                                    <div class="readmore_area">
-                                        <a data-hover="Добавить" href="insert.php?data=test"><span>Добавить</span></a>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -79,7 +81,7 @@ include('src/youAreHere.php');
                 <div class="col-lg-12 col-md-12">
                     <div class="service-area">
                         <div class="section-heading">
-                            <h2>Врачи</h2>
+                            <h2>Запись к врачу</h2>
                             <div class="line"></div>
                         </div>
                         <div class="service-content">
@@ -89,30 +91,35 @@ include('src/youAreHere.php');
                                         <thead>
                                             <tr>
                                                 <th>Врач</th>
-                                                <th>Стоимость</th>
-                                                <th>Изменить</th>
-                                                <th>Удалить</th>
+                                                <th>Пациент</th>
+                                                <th>Дата</th>
+                                                <th>Время</th>
+                                                <th>Upload</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php
-                                            $sql = mysqli_query($con, "SELECT * FROM doctor");
+                                            $sql = mysqli_query($con, "SELECT * FROM doctor_app");
                                             while ($row = mysqli_fetch_array($sql)) {
+                                                $doc = $row['Doctor_id'];
+                                                $sql2 = mysqli_query($con, "SELECT * FROM doctor WHERE id='$doc' ");
+                                                $row2 = mysqli_fetch_array($sql2);
+                                                $user = $row['Users_id'];
+                                                $sql3 = mysqli_query($con, "SELECT * FROM client WHERE Id='$user' ");
+                                                $row3 = mysqli_fetch_array($sql3);
                                                 ?>
                                                 <tr>
-                                                    <th scope="row"><?= $row['Name'] ?></th>
-                                                    <td><?= $row['Fees'] ?></td>
-                                                    <td><a href="edit.php?data=doctor&id=<?= $row['Id']; ?>">Изменить</a></td>
-                                                    <td><a href="delete.php?data=doctor&id=<?= $row['Id']; ?>">Удалить</a></td>
+                                                    <th scope="row"><?= $row2['Name'] ?></th>
+                                                    <td><?= $row3['Name'] ?></td>
+                                                    <td><?= $row['App_date'] ?></td>
+                                                    <td><?= $row['App_time'] ?></td>
+                                                    <td><a href="uploadcode.php?data=doctor&id=<?= $row['Id'] ?>">Загрузить</a></td>
                                                 </tr>
                                             <?php
                                             }
                                             ?>
                                         </tbody>
                                     </table>
-                                    <div class="readmore_area">
-                                        <a data-hover="Добавить" href="insert.php?data=doctor"><span>Добавить</span></a>
-                                    </div>
                                 </div>
                             </div>
                         </div>

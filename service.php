@@ -16,7 +16,7 @@ include('src/config.php');
 
     <section id="service">
         <div class="container">
-            <div class="row ">
+            <div class="row">
                 <div class="col-lg-12 col-md-12">
                     <div class="service-area">
                         <div class="section-heading">
@@ -46,7 +46,6 @@ include('src/config.php');
                                             }
                                             ?>
 
-                                            
                                         </tbody>
                                     </table>
                                     <div class="readmore_area">

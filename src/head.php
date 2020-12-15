@@ -1,3 +1,4 @@
+
 <meta charset="utf-8">
 <meta content="IE=edge" http-equiv="X-UA-Compatible">
 
@@ -16,8 +17,9 @@
 <link href="css/font-awesome.min.css" rel="stylesheet">
 <!-- Тема -->
 <link href="css/themes/green-theme.css" id="switcher" rel="stylesheet">
-
-
 <link href="style.css" rel="stylesheet">
+
+
+
 
 

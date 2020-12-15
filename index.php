@@ -5,6 +5,7 @@
 <head>
     <title>Doctor Finder : Главная страница</title>
     <?php include('src/head.php') ?>
+    
 </head>
 
 <body>
@@ -15,10 +16,10 @@
         if (isset($_POST['ok'])) {
             if (isset($_SESSION['log']) == "") {
                 echo '
-                <p>
+                <script>
                   alert("Sign in First");
                   window.location.href = "login.php";
-                </p>
+                </script>
                 ';
             } else {
                 $id = $_SESSION['log']['Id'];
@@ -30,17 +31,17 @@
                     $qry = mysqli_query($con, "INSERT INTO test_appointment (Test_id,Test_time,Test_date,Users_id,Report) VALUES ('$test','$apptime','$appdate','$id','')");
                     if ($qry) {
                         echo '
-                        <p>
+                        <script>
                         alert("Appointment set Sucessfully");
                         window.location.href = "appointments.php";
-                        </p>
+                        </script>
                         ';
                     } else {
                         // echo "Error: " . mysqli_error($con);
                         echo '
-                        <p>
+                        <script>
                         alert("Appointment set Unsucessful RETRY!");
-                        </p>
+                        </script>
                         ';
                     }
                 } else if ($type == 'doctor') {
@@ -217,7 +218,7 @@
                                                         });
                                                         appdate.addEventListener("change", () => {
                                                             let data = "docname=" + docname.value + "&" + "appdate=" + appdate.value;
-                                                            $.ajax({ 
+                                                            $.ajax({
                                                                 url: "index.php",
                                                                 type: "POST",
                                                                 data: data,

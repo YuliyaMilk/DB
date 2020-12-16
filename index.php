@@ -37,7 +37,7 @@
                         </script>
                         ';
                     } else {
-                        // echo "Error: " . mysqli_error($con);
+                        //echo "Error: " . mysqli_error($con);
                         echo '
                         <script>
                         alert("Appointment set Unsucessful RETRY!");

@@ -39,6 +39,10 @@ include('src/config.php');
                     <tbody>
                         <?php
                             $sql = mysqli_query($con, "SELECT DISTINCT Category FROM Doctor") or die(mysqli_error($con));
+                            if(!$sql){ // запрос завершился ошибкой
+                                echo 'Ошибка запроса: ' . mysqli_error($con) . '<br>';
+                                echo 'Код ошибки: ' . mysqli_errno($con);
+                             }else{
                             while ($row = mysqli_fetch_array($sql)) {
                         ?>
                         <thead>
@@ -76,6 +80,7 @@ include('src/config.php');
                         </tbody>
                         <?php
                         }
+                    }
                         ?>
                     </tbody>
                 </table>

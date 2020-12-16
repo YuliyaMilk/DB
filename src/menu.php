@@ -23,7 +23,7 @@ if (isset($_SESSION['log']) == "") {
 <?php
 } else if ($_SESSION['log1'] == "admin") {
     ?>
-    <li><a href="update.php">Изменить</a></li>
+    <li><a href="update.php">Врачи и анализы</a></li>
     <li><a href="editprofile.php">Изменить профиль</a></li>
     <li><a href="logout.php">Выйти</a></li>
 <?php
